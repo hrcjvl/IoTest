@@ -65,7 +65,7 @@ while True:
             print("Pins data error")
             exit()
         else:
-            sleep(0.5)
+            sleep(2)
             hexstr = f"0x{pin_value.value:04x}"
             print(hexstr)
 

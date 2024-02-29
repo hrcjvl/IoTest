@@ -14,6 +14,7 @@
 #### 解决方案
 
 ##### 问题1
+在`TestExecutor.java line 1195`添加`for`循环修改从0开始
 
 ##### 问题2
 1. 在`TestExecutor.java line 1101` 添加 tool_dir 用于获取python.exe路径

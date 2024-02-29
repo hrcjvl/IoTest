@@ -68,3 +68,20 @@
 2. 所以最好的测试用例就是如下截图所示：![](./mycom2.png)图中414243等是十六进制对abc...,0A是换行。
 
 3. 注意发送读取时，时间的先后问题。**防止树莓派数据已经发送了，而IoTest接收端还未打开。**
+
+
+#### IoTest com错误定位
+
+1. `SerialTransmitter.java function openSerialPort line:287`,错误显示一般是`错误：COM9
+   ```java
+    CommPort commPort = portIdentifier.open(serialPortName, (int)timeout);
+   ```
+
+
+
+#### IoTest 240228 串口问题所在
+
+1. Iotest中某串口打开之后，在接下来的接收和发送操作中，是没有执行`closeSerialPort()`的，导致串口一直处于打开状态。所以当调整波特率时，会出现`错误：COM9`
+
+2. 尝试在程序中添加`closeSerialPort()`，但是会出现线程报错，可能是线程的同步问题。
+   `java.util.concurrent.RejectedExecutionException: Task java.util.concurrent.FutureTask@23f1d962 rejected from java.util.concurrent.ThreadPoolExecutor@16caa3d4[Terminated, pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 1]`
