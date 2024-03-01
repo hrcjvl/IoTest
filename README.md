@@ -7,4 +7,5 @@
 
 3. 240301测试
    
-4. git pull 测试 
+4. git pull 测试
+5. git fetch 测试
